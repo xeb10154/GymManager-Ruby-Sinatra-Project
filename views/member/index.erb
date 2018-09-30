@@ -1,3 +1,11 @@
 <h1>All members listed below</h1>
+<%# Flake on ice cream cone is used for printing out %>
+<div class="members_list">
+  <p><a href="/member/new">Add New Member</a></p>
 
-<p><a href="/member/new">Add New Member</a></p>
+<% for member in @members %>
+  <h3>Name: <%= member.fullName() %></h3>
+  <p>Member #ID: <%= member.id %> </p>
+  <p><a href="/member/<%= member.id %>">Show Details</a></p>
+<% end %>
+</div>

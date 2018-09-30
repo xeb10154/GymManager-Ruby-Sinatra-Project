@@ -1,13 +1,13 @@
-<h1>Add New Members</h1>
+<h1>Edit Member</h1>
 
 
 <form method="post" action="/member">
 
   <label for="first_name">First Name:</label>
-  <input id="first_name" type="text" name="first_name"/>
+  <input id="first_name" value="<%= @member.first_name %>" type="text" name="first_name"/>
 
   <label for="last_name">First Name:</label>
-  <input id="last_name" type="text" name="last_name"/>
+  <input id="last_name" value="<%= @member.last_name %>" type="text" name="last_name"/>
 
   <label>
     Select a membership:

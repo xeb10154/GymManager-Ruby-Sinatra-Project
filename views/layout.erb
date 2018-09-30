@@ -10,25 +10,25 @@
 </head>
 <body>
 
-  <header>
+  <header id="header" style="position:absolute; top:0px; left:0px; height:200px; right:0px;overflow:hidden;">
     <h1 class ="Logo"><a href="/">Gym Manager</a></h1>
 
     <nav class ="topnav">
       <ul>
         <li><a href="/">Dashboard</a></li>
         <li><a href="/gymclass">All Classes</a></li>
-        <li><a href="/member">Add Members</a></li>
+        <li><a href="/member">All Members</a></li>
       </ul>
     </nav>
   </header>
 
-  <main>
+  <main id="content" style="position:absolute; top:150px; bottom:100px; left:0px; right:0px; overflow:auto;">
     <div>
       <%= yield %>
     </div>
   </main>
 
-  <footer class ="footnote">
+  <footer id="footer" style="position:absolute; bottom:0px; height:100px; left:0px; right:0px; overflow:hidden;">
     <h5>Technical Support<h5>
     <p>Contact details: 118-118-1188<p>
   </footer>
