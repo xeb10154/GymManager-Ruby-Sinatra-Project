@@ -4,9 +4,34 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>Gym Manager</title>
+
+  <link rel="stylesheet" href="../public/styles/styles.css">
 </head>
 <body>
+
+  <header>
+    <h1 class ="Logo"><a href="/">Gym Manager</a></h1>
+
+    <nav class ="topnav">
+      <ul>
+        <li><a href="/">Dashboard</a></li>
+        <li><a href="/gymclass">All Classes</a></li>
+        <li><a href="/member">Add Members</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div>
+      <%= yield %>
+    </div>
+  </main>
+
+  <footer class ="footnote">
+    <h5>Technical Support<h5>
+    <p>Contact details: 118-118-1188<p>
+  </footer>
 
 </body>
 </html>

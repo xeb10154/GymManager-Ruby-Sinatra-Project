@@ -1,0 +1,22 @@
+<h1>Add New Members</h1>
+
+
+<form action="/member" method="post">
+
+  <label for="first_name">First Name:</label>
+  <input id="first_name" type="text" name="first_name"/>
+
+  <label for="last_name">First Name:</label>
+  <input id="last_name" type="text" name="last_name"/>
+
+  <label>
+    Select a membership:
+    <select name="member_type">
+      <option value="premium">Premium</option>
+      <option value="standard">Standard</option>
+    </select>
+  </label>
+
+
+  <input class="btn-action" type='submit' value="Save member">
+</form>
