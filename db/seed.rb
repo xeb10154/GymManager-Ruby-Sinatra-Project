@@ -1,9 +1,11 @@
 require("pry-byebug")
 require_relative("../models/member")
 require_relative("../models/gymClass")
+require_relative("../models/booking")
 
 Member.delete_all()
 GymClass.delete_all()
+Booking.delete_all()
 
 #--- Member objects
 

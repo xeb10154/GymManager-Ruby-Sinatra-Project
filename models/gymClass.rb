@@ -76,7 +76,7 @@ class GymClass
 
   def doubleBooked(member)
     booked = false
-    for each in member.gymclass
+    for each in member.gymclasses
       if each.id == @id
         booked = true
       end

@@ -68,10 +68,12 @@ post "/gymclass/:id/booking/:member_id" do
 end
 
 post "/gymclass/:id/booking/:member_id/cancel" do
-  @gymclass = GymClass.find(params[:id])
-  @attendees = @gymclass.members()
 
-  @gymclass.cancelBooking(params[:member_id])
+  member = Member.find(params[:member_id])
+  @gymclass = GymClass.find(params[:id])
+
+  @gymclass.cancelBooking(member)
+  @attendees = @gymclass.members()
 
   erb (:"gymclass/attendees")
 end

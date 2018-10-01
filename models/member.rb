@@ -82,7 +82,7 @@ class Member
 
   def doubleBooked(aClass)
     booked = false
-    for each in aClass.member
+    for each in aClass.members
       if each.id == @id
         booked = true
       end
@@ -91,7 +91,7 @@ class Member
     return booked
   end
 
-  def gymclass
+  def gymclasses
     sql = "SELECT gymclasses.*
     FROM gymclasses INNER JOIN bookings
     ON gymclasses.id = bookings.gymclass_id
