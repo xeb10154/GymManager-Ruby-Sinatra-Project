@@ -1,0 +1,18 @@
+<h1>Edit Class</h1>
+
+<form method="post" action="/gymclass/<%= @gymclass.id %>/edit">
+
+  <label for="instructor_name">First Name:</label>
+  <input id="instructor_name" value="<%= @gymclass.instructor_name %>" type="text" name="instructor_name"/>
+
+  <label for="class_name">Last Name:</label>
+  <input id="class_name" value="<%= @gymclass.class_name%>" type="text" name="class_name"/>
+
+  <label for="restriction">
+    Select a membership restriction:
+    <input type="checkbox" id="restriction" value="" name="restriction"/>
+  </label>
+
+
+  <input class="btn-action" type='submit' value="Save edit">
+</form>

@@ -11,6 +11,7 @@ class GymClass
     @instructor_name = options["instructor_name"]
     @class_name = options["class_name"]
     @empty_spaces = options["empty_spaces"].to_i
+    @restriction = 0 # Value 0 represents false.
   end
 
   def save()
@@ -53,14 +54,39 @@ class GymClass
   end
 
   def update()
-    sql = "UPDATE gymclasses SET empty_spaces = $1 WHERE id = $2"
+    sql = "UPDATE gymclasses SET (instructor_name, class_name, empty_spaces)
+    = ($1, $2, $3) WHERE id = $4"
 
-    values = [@empty_spaces ,@id]
+    values = [@instructor_name, @class_name, @empty_spaces ,@id]
     SqlRunner.run(sql, values)
   end
 
+  def book(member)
+    if (@empty_spaces > 0) && (doubleBooked(member) == false)
+      booking = Booking.new(
+        "member_id" => member.id,
+        "gymclass_id" => @id
+      )
+      booking.save()
+
+      @empty_spaces -= 1
+      self.update()
+    end
+  end
+
+  def doubleBooked(member)
+    booked = false
+    for each in member.gymclass
+      if each.id == @id
+        booked = true
+      end
+      # binding.pry
+    end
+    return booked
+  end
+
   # Only select members.* so that only those variables are mapped
-  def member()
+  def members()
     sql = "SELECT members.*
     FROM members INNER JOIN bookings
     ON members.id = bookings.member_id
@@ -71,9 +97,16 @@ class GymClass
     result = member_hash.map {|member| Member.new(member)}
     # binding.pry
     return result
-
   end
 
+  def cancelBooking(member)
+    sql = "DELETE FROM bookings WHERE member_id = $1"
 
+    values = [member.id]
+    SqlRunner.run(sql, values)
+
+    @empty_spaces += 1
+    self.update()
+  end
 
 end

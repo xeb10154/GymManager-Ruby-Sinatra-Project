@@ -27,7 +27,19 @@ get "/member/:id/edit" do
 end
 
 post "/member" do
-  @member = Member.new(params)
-  @member.save()
-  erb(:"member/confirm")
+  member = Member.new(params)
+  member.save()
+  erb(:"member/create")
+end
+
+post "/member/:id/edit" do
+  member = Member.new(params)
+  member.update()
+  erb (:"/index") # Cant get REDIRECT to work!!!
+end
+
+post "/member/:id/delete" do
+  member = Member.find(params[:id])
+  member.delete()
+  erb (:"/index")
 end

@@ -2,7 +2,7 @@ require("pry-byebug")
 require_relative("../models/member")
 require_relative("../models/gymClass")
 
-# Member.delete_all()
+Member.delete_all()
 GymClass.delete_all()
 
 #--- Member objects
@@ -51,6 +51,18 @@ member2 = Member.new({
         member1.book(spinClass1)
         member2.book(spinClass1)
         member1.book(spinClass1)
+
+        member1.first_name = "Ray"
+        member1.update
+
+        spinClass1.book(member3)
+        spinClass1.book(member3)
+
+        spinClass1.cancelBooking(member3)
+
+        spinClass1.instructor_name = "bob"
+        spinClass1.update
+
 
         binding.pry
         nil

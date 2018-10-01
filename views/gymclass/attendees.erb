@@ -1,0 +1,11 @@
+<h1>Attendees for this <%= @gymclass.class_name %></h1>
+
+<div class="attendee_list">
+  <% for member in @attendees %>
+  <h3>Name: <%= member.fullName() %></h3>
+  <p>Member #ID: <%= member.id %> </p>
+  <form method="post" action="/gymclass/<%= @gymclass.id %>/booking/<%= member.id %>/cancel">
+    <input class="btn-action" type='submit' value="Cancel Booking">
+  </form>
+  <% end %>
+</div>

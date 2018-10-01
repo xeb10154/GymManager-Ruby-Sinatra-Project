@@ -1,0 +1,16 @@
+<h1>Book a member to <%= @gymclass.class_name %></h1>
+
+<p><a href="/gymclass/<%= @gymclass.id%>/attendees">See who is coming to class</a></p>
+
+<div class="members_list">
+
+  <% for member in @members %>
+  <h3>Name: <%= member.fullName() %></h3>
+  <p>Member #ID: <%= member.id %> </p>
+  <form method="post" action="/gymclass/<%=@gymclass.id%>/booking/<%=member.id%>">
+    <input class="btn-action" type='submit' value="Book Now">
+  </form>
+
+
+  <% end %>
+</div>

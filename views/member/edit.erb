@@ -1,22 +1,21 @@
 <h1>Edit Member</h1>
 
-
-<form method="post" action="/member">
+<form method="post" action="/member/<%= @member.id %>/edit">
 
   <label for="first_name">First Name:</label>
   <input id="first_name" value="<%= @member.first_name %>" type="text" name="first_name"/>
 
-  <label for="last_name">First Name:</label>
+  <label for="last_name">Last Name:</label>
   <input id="last_name" value="<%= @member.last_name %>" type="text" name="last_name"/>
 
   <label>
     Select a membership:
-    <select value="standard" name="member_type">
+    <select value="<%= @member.member_type %>" name="member_type">
       <option value="premium">Premium</option>
       <option value="standard">Standard</option>
     </select>
   </label>
 
 
-  <input class="btn-action" type='submit' value="Save member">
+  <input class="btn-action" type='submit' value="Save edit">
 </form>

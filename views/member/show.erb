@@ -3,8 +3,9 @@
 <p>First Name: <%= @member.first_name %> </p>
 <p>Last Name: <%= @member.last_name %> </p>
 <p>Membership Type: <%= @member.member_type %> </p>
+<p>Member #ID: <%= @member.id %> </p>
 
-<form method="post" action ="/@member/<%= @member.id %>/delete">
+<form method="post" action ="/member/<%= @member.id %>/delete">
   <input type="submit" value="Delete member"/>
 </form>
 <form method="get" action ="/member/<%= @member.id %>/edit">

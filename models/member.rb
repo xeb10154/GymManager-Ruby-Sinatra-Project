@@ -52,10 +52,21 @@ class Member
     return Member.new(member_hash)
   end
 
+  def update()
+    sql = "UPDATE members SET
+    (first_name, last_name, member_type)
+    =
+    ($1, $2, $3) WHERE id = $4"
+
+    values = [@first_name, @last_name, @member_type, @id]
+    SqlRunner.run(sql, values)
+  end
+
   def fullName()
     return "#{@first_name} #{@last_name}"
   end
 
+  # Still to add condition for member_type (premium or standard membership)
   def book(aClass)
     if (aClass.empty_spaces > 0) && (doubleBooked(aClass) == false)
       booking = Booking.new(
@@ -80,6 +91,18 @@ class Member
     return booked
   end
 
+  def gymclass
+    sql = "SELECT gymclasses.*
+    FROM gymclasses INNER JOIN bookings
+    ON gymclasses.id = bookings.gymclass_id
+    WHERE member_id = $1"
+
+    values = [@id]
+    gymclass_hash = SqlRunner.run(sql, values)
+    result = gymclass_hash.map {|gymclass| GymClass.new(gymclass)}
+    # binding.pry
+    return result
+  end
 
 
 end
