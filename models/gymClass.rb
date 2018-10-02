@@ -1,26 +1,29 @@
 require("pry-byebug")
+require("time")
 require_relative("../db/sql_runner")
 
 class GymClass
 
-  attr_accessor :instructor_name, :class_name, :empty_spaces
+  attr_accessor :instructor_name, :class_name, :empty_spaces, :max_spaces
   attr_reader :id
 
   def initialize(options)
     @id = options["id"].to_i if options["id"]
     @instructor_name = options["instructor_name"]
     @class_name = options["class_name"]
-    @empty_spaces = options["empty_spaces"].to_i
-    @restriction = 0 # Value 0 represents false.
+    @max_spaces = options["max_spaces"].to_i
+    @empty_spaces = self.calcSpaces
+    # @start_time = options["start_time"]
+    # @finish_time
   end
 
   def save()
-    sql = "INSERT INTO gymclasses (instructor_name, class_name, empty_spaces)
+    sql = "INSERT INTO gymclasses (instructor_name, class_name, max_spaces, empty_spaces)
     VALUES
-    ($1, $2, $3)
+    ($1, $2, $3, $4)
     RETURNING id"
 
-    values = [@instructor_name, @class_name, @empty_spaces]
+    values = [@instructor_name, @class_name, @max_spaces, @empty_spaces]
     result = SqlRunner.run(sql, values).first
     @id = result["id"].to_i
   end
@@ -54,10 +57,10 @@ class GymClass
   end
 
   def update()
-    sql = "UPDATE gymclasses SET (instructor_name, class_name, empty_spaces)
-    = ($1, $2, $3) WHERE id = $4"
+    sql = "UPDATE gymclasses SET (instructor_name, class_name, max_spaces, empty_spaces)
+    = ($1, $2, $3, $4) WHERE id = $5"
 
-    values = [@instructor_name, @class_name, @empty_spaces ,@id]
+    values = [@instructor_name, @class_name, @max_spaces, @empty_spaces ,@id]
     SqlRunner.run(sql, values)
   end
 
@@ -67,10 +70,12 @@ class GymClass
         "member_id" => member.id,
         "gymclass_id" => @id
       )
+
       booking.save()
 
       @empty_spaces -= 1
       self.update()
+      # binding.pry
     end
   end
 
@@ -83,6 +88,18 @@ class GymClass
       # binding.pry
     end
     return booked
+  end
+
+  def cancelBooking(member)
+    if (@empty_spaces <= @max_spaces)
+      sql = "DELETE FROM bookings WHERE member_id = $1"
+
+      values = [member.id]
+      SqlRunner.run(sql, values)
+
+      @empty_spaces += 1
+      self.update()
+    end
   end
 
   # Only select members.* so that only those variables are mapped
@@ -99,14 +116,8 @@ class GymClass
     return result
   end
 
-  def cancelBooking(member)
-    sql = "DELETE FROM bookings WHERE member_id = $1"
-
-    values = [member.id]
-    SqlRunner.run(sql, values)
-
-    @empty_spaces += 1
-    self.update()
+  def calcSpaces
+    @empty_spaces = @max_spaces - self.members.length
   end
 
 end

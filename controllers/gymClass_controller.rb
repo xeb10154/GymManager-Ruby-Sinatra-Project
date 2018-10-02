@@ -58,6 +58,7 @@ post "/gymclass/:id/delete" do
 end
 
 post "/gymclass/:id/booking/:member_id" do
+  # binding.pry
   member = Member.find(params[:member_id])
   @gymclass = GymClass.find(params[:id])
 

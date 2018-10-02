@@ -8,11 +8,12 @@
   <label for="class_name">Last Name:</label>
   <input id="class_name" value="<%= @gymclass.class_name%>" type="text" name="class_name"/>
 
-  <label for="restriction">
-    Select a membership restriction:
-    <input type="checkbox" id="restriction" value="" name="restriction"/>
-  </label>
-
+  <!-- Not fully working yet -->
+  <label for="max_spaces">Maximum Class Size:</label>
+  <input id="max_spaces" value="" type="number" name="max_spaces"/>
+<!-- Not fully working yet -->
+  <label for="start_time">Start Time:</label>
+  <input id="start_time" type="date" name="start_time">
 
   <input class="btn-action" type='submit' value="Save edit">
 </form>

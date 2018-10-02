@@ -35,14 +35,14 @@ member2 = Member.new({
     spinClass1 = GymClass.new({
       "instructor_name" => "Jane Doe",
       "class_name" => "Spin Class",
-      "empty_spaces" => 20
+      "max_spaces" => 20
       })
       spinClass1.save()
 
       pumpClass1 = GymClass.new({
         "instructor_name" => "John Doe",
         "class_name" => "Pump Class",
-        "empty_spaces" => 10
+        "max_spaces" => 10
         })
         pumpClass1.save()
 
@@ -57,10 +57,12 @@ member2 = Member.new({
         member1.first_name = "Ray"
         member1.update
 
-        spinClass1.book(member3)
-        spinClass1.book(member3)
+        # spinClass1.book(member3)
+        # spinClass1.book(member3)
 
-        spinClass1.cancelBooking(member3)
+        # spinClass1.cancelBooking(member3)
+
+        pumpClass1.book(member2)
 
         spinClass1.instructor_name = "bob"
         spinClass1.update

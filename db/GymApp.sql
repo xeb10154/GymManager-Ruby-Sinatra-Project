@@ -13,8 +13,9 @@ CREATE TABLE gymclasses (
   id SERIAL4 PRIMARY KEY,
   instructor_name VARCHAR(255),
   class_name VARCHAR(255),
-  empty_spaces INT2,
-  restriction BIT
+  max_spaces INT2,
+  empty_spaces INT2
+  -- start_time DATETIME
 );
 
 CREATE TABLE bookings (

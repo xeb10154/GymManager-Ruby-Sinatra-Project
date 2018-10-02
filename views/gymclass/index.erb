@@ -7,7 +7,7 @@
   <h3>Class: <%= gymclass.class_name %> </h3>
   <p>Class #ID: <%= gymclass.id %> </p>
   <p>Instructor: <%= gymclass.instructor_name %></p>
-  <p>Spaces left: <%= gymclass.empty_spaces %> </p>
+  <p>Spaces left: <%= gymclass.empty_spaces %>/<%= gymclass.max_spaces %></p>
   <ul>
     <li><a href="/gymclass/<%= gymclass.id %>">Show Details</a></li>
     <li><a href="/gymclass/<%= gymclass.id %>/booking">New Booking</a></li>
