@@ -1,6 +1,50 @@
-header {
-  background-color: red;
+.logo {
+  margin: 10px;
+  color: red;
+  text-decoration: none;
+  text-transform: none;
 }
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav li {
+  display: inline-block;
+  margin: 10px;
+  padding-top: 10px;
+
+  position: relative;
+}
+
+header {
+  /* background-color: #345D82; */
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 150px;
+  right: 0px;
+  overflow: hidden;
+}
+
+main {
+
+  position: absolute;
+  top: 150px;
+  bottom: 100px;
+  left: 0px;
+  right: 0px;
+  overflow: auto;
+}
+
 footer {
-  background-color: violet;
+  /* background-color: #345D82; */
+  position: absolute;
+  bottom: 0px;
+  height: 100px;
+  left: 0px;
+  right: 0px;
+  overflow: hidden;
 }

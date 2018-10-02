@@ -4,7 +4,7 @@ require_relative("../db/sql_runner")
 
 class GymClass
 
-  attr_accessor :instructor_name, :class_name, :empty_spaces, :max_spaces
+  attr_accessor :instructor_name, :class_name, :empty_spaces, :max_spaces, :start_time
   attr_reader :id
 
   def initialize(options)
@@ -13,17 +13,17 @@ class GymClass
     @class_name = options["class_name"]
     @max_spaces = options["max_spaces"].to_i
     @empty_spaces = self.calcSpaces
-    # @start_time = options["start_time"]
+    @start_time = Time.parse(options["start_time"])
     # @finish_time
   end
 
   def save()
-    sql = "INSERT INTO gymclasses (instructor_name, class_name, max_spaces, empty_spaces)
+    sql = "INSERT INTO gymclasses (instructor_name, class_name, max_spaces, empty_spaces, start_time)
     VALUES
-    ($1, $2, $3, $4)
+    ($1, $2, $3, $4, $5)
     RETURNING id"
 
-    values = [@instructor_name, @class_name, @max_spaces, @empty_spaces]
+    values = [@instructor_name, @class_name, @max_spaces, @empty_spaces, @start_time]
     result = SqlRunner.run(sql, values).first
     @id = result["id"].to_i
   end
@@ -57,26 +57,55 @@ class GymClass
   end
 
   def update()
-    sql = "UPDATE gymclasses SET (instructor_name, class_name, max_spaces, empty_spaces)
-    = ($1, $2, $3, $4) WHERE id = $5"
+    sql = "UPDATE gymclasses SET (instructor_name, class_name, max_spaces, empty_spaces, start_time)
+    = ($1, $2, $3, $4, $5) WHERE id = $6"
 
-    values = [@instructor_name, @class_name, @max_spaces, @empty_spaces ,@id]
+    values = [@instructor_name, @class_name, @max_spaces, @empty_spaces, @start_time, @id]
     SqlRunner.run(sql, values)
   end
 
   def book(member)
-    if (@empty_spaces > 0) && (doubleBooked(member) == false)
+    # check member premium status
+    if (@empty_spaces > 0) && member.member_type == "premium" && !doubleBooked(member)
       booking = Booking.new(
         "member_id" => member.id,
         "gymclass_id" => @id
       )
+      booking.save()
 
+      @empty_spaces -= 1
+      self.update()
+
+      # check the time
+    elsif (@empty_spaces > 0) && member.member_type =="standard" && !doubleBooked(member) && peakTime(member) == false
+      booking = Booking.new(
+        "member_id" => member.id,
+        "gymclass_id" => @id
+      )
       booking.save()
 
       @empty_spaces -= 1
       self.update()
       # binding.pry
     end
+  end
+
+  def peakTime(member)
+    peaktime = false
+    # Hard coded times
+    # Morning peak times
+    t1 = Time.new(2018, 1, 1, 7, 0, 0, 0).strftime("%H%M%S%N")
+    t2 = Time.new(2018, 1, 1, 9, 0, 0, 0).strftime("%H%M%S%N")
+    # Evening peak times
+    t3 = Time.new(2018, 1, 1, 17, 0, 0, 0).strftime("%H%M%S%N")
+    t4 = Time.new(2018, 1, 1, 20, 0, 0, 0).strftime("%H%M%S%N")
+
+    current_time = self.start_time.strftime("%H%M%S%N")
+
+    if current_time.between?(t1,t2) || current_time.between?(t3,t4)
+      peaktime = true
+    end
+    return peaktime
   end
 
   def doubleBooked(member)

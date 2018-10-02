@@ -14,8 +14,8 @@ CREATE TABLE gymclasses (
   instructor_name VARCHAR(255),
   class_name VARCHAR(255),
   max_spaces INT2,
-  empty_spaces INT2
-  -- start_time DATETIME
+  empty_spaces INT2,
+  start_time TIME
 );
 
 CREATE TABLE bookings (
