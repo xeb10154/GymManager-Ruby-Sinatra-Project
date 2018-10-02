@@ -12,7 +12,7 @@
   <input id="max_spaces" value="<%= @gymclass.max_spaces%>" type="number" name="max_spaces"/>
 <!-- Not fully working yet -->
   <label for="start_time">Start Time:</label>
-  <input id="start_time" type="datetime-local" name="start_time">
+  <input id="start_time" value="<%= @gymclass.start_time%>" type="datetime-local" name="start_time">
 
   <input class="btn-action" type='submit' value="Save edit">
 </form>

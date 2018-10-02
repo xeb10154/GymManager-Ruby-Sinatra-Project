@@ -1,9 +1,27 @@
 <h2 class="show">Class Details</h2>
 
-<p>Class: <%= @gymclass.class_name %> </p>
-<p>Instructor: <%= @gymclass.instructor_name %> </p>
-<p>Spaces left: <%= @gymclass.empty_spaces %> </p>
-<p>Class #ID: <%= @gymclass.id %> </p>
+<table class="tableClasses">
+  <tr>
+    <th class="cell1">Class:</th>
+    <th class="cell2"><%= @gymclass.class_name %></th>
+  </tr>
+  <tr>
+    <td class="cell1">Class #ID:</td>
+    <td class="cell2"><%= @gymclass.id %></td>
+  </tr>
+  <tr>
+    <td class="cell1">Start Time:</td>
+    <td class="cell2"><%= @gymclass.start_time %></td>
+  </tr>
+  <tr>
+    <td class="cell1">Instructor:</td>
+    <td class="cell2"><%= @gymclass.instructor_name %></td>
+  </tr>
+  <tr>
+    <td class="cell1">Spaces Left:</td>
+    <td class="cell2"><%= @gymclass.empty_spaces %>/<%= @gymclass.max_spaces %></td>
+  </tr>
+</table>
 
 <form method="post" action ="/gymclass/<%= @gymclass.id %>/delete">
   <input type="submit" value="Delete gymclass"/>

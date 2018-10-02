@@ -1,15 +1,33 @@
 <h1>All classes listed below</h1>
 
+<p><a href="/gymclass/new">Create a new class</a></p>
 <div class="gymclass_list">
-  <p><a href="/gymclass/new">Create a new class</a></p>
-
   <% for gymclass in @gymclasses %>
-  <h3>Class: <%= gymclass.class_name %> </h3>
-  <p>Class #ID: <%= gymclass.id %> </p>
-  <p>Start_time: <%= gymclass.start_time %></p>
-  <p>Instructor: <%= gymclass.instructor_name %></p>
-  <p>Spaces left: <%= gymclass.empty_spaces %>/<%= gymclass.max_spaces %></p>
-  <ul>
+</style>
+<table class="tableClasses">
+  <tr>
+    <th class="cell1">Class:</th>
+    <th class="cell2"><%= gymclass.class_name %></th>
+  </tr>
+  <tr>
+    <td class="cell1">Class #ID:</td>
+    <td class="cell2"><%= gymclass.id %></td>
+  </tr>
+  <tr>
+    <td class="cell1">Start Time:</td>
+    <td class="cell2"><%= gymclass.start_time %></td>
+  </tr>
+  <tr>
+    <td class="cell1">Instructor:</td>
+    <td class="cell2"><%= gymclass.instructor_name %></td>
+  </tr>
+  <tr>
+    <td class="cell1">Spaces Left:</td>
+    <td class="cell2"><%= gymclass.empty_spaces %>/<%= gymclass.max_spaces %></td>
+  </tr>
+</table>
+
+  <ul class="links">
     <li><a href="/gymclass/<%= gymclass.id %>">Show Details</a></li>
     <li><a href="/gymclass/<%= gymclass.id %>/booking">New Booking</a></li>
   </ul>

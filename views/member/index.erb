@@ -1,11 +1,24 @@
 <h1>All members listed below</h1>
 
+<p><a href="/member/new">Add New Member</a></p>
+
 <div class="members_list">
-  <p><a href="/member/new">Add New Member</a></p>
 
   <% for member in @members %>
-  <h3>Name: <%= member.fullName() %></h3>
-  <p>Member #ID: <%= member.id %> </p>
-  <p><a href="/member/<%= member.id %>">Show Details</a></p>
+  <table class="tableClasses">
+    <tr>
+      <th class="cell1">Name:</th>
+      <th class="cell2"><%= member.fullName()%></th>
+    </tr>
+    <tr>
+      <td class="cell1">Member #ID:</td>
+      <td class="cell2"><%= member.id %></td>
+    </tr>
+  </table>
+
+  <ul class="links">
+    <li><a href="/member/<%= member.id %>">Show Details</a></li>
+  </ul>
+
   <% end %>
 </div>

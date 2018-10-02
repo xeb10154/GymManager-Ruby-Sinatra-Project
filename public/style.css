@@ -1,8 +1,33 @@
-.logo {
-  margin: 10px;
-  color: red;
+header {
+  background-color: #345D82;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 150px;
+  right: 0px;
+  overflow: hidden;
+}
+
+body {
+  font-family: Oswald;
+}
+
+header a {
+  color: white;
   text-decoration: none;
   text-transform: none;
+  font-size: 48px;
+  font-weight: 700;
+
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  text-transform: none;
+  font-size: 24px;
+  font-weight: 400;
+  margin-left: 10px;
 }
 
 nav ul {
@@ -13,24 +38,10 @@ nav ul {
 
 nav li {
   display: inline-block;
-  margin: 10px;
-  padding-top: 10px;
-
   position: relative;
 }
 
-header {
-  /* background-color: #345D82; */
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  height: 150px;
-  right: 0px;
-  overflow: hidden;
-}
-
 main {
-
   position: absolute;
   top: 150px;
   bottom: 100px;
@@ -40,11 +51,78 @@ main {
 }
 
 footer {
-  /* background-color: #345D82; */
+  background-color: #345D82;
   position: absolute;
   bottom: 0px;
   height: 100px;
   left: 0px;
   right: 0px;
   overflow: hidden;
+}
+
+h1 {
+  margin-left: 10px;
+}
+
+h5 {
+  font-weight: 200;
+  color: white;
+  margin: 10px;
+}
+
+h6 {
+  margin-left: 10px;
+}
+
+.yield h1 {
+  font-weight: 400
+}
+
+.yield p {
+  font-weight: 300
+}
+
+.gymclass_list {
+  margin: 10px
+}
+
+.links li{
+  margin: 0;
+  padding: 0;
+  /* font-size: 24px; */
+  font-weight: 400;
+  display: inline-block;
+  position: left;
+}
+
+.links ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.links a {
+  background-color: #345D82;
+  color: white;
+  text-decoration: none;
+  text-transform: none;
+  font-weight: 400;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.tableClasses {
+    border-spacing: 5px;
+}
+
+th {
+  text-align: left;
+  color: white;
+  font-weight: 400;
+  background-color: #345D82;
+  padding: 5px;
+}
+
+p {
+  margin-left: 10px;
 }
