@@ -5,8 +5,22 @@
 <div class="members_list">
 
   <% for member in @members %>
-  <h3>Name: <%= member.fullName() %></h3>
-  <p>Member #ID: <%= member.id %> </p>
+
+  <table class="tableClasses">
+    <tr>
+      <th class="cell1">Name:</th>
+      <th class="cell2"><%= member.fullName()%></th>
+    </tr>
+    <tr>
+      <td class="cell1">Member #ID:</td>
+      <td class="cell2"><%= member.id %></td>
+    </tr>
+    <tr>
+      <td class="cell1">Membership Type:</td>
+      <td class="cell2"><%= member.member_type.capitalize %></td>
+    </tr>
+  </table>
+
   <form method="post" action="/gymclass/<%=@gymclass.id%>/booking/<%=member.id%>">
     <input class="btn-action" type='submit' value="Book Now">
   </form>

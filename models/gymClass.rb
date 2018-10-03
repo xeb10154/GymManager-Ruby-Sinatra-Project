@@ -1,6 +1,7 @@
 require("pry-byebug")
 require("time")
 require_relative("../db/sql_runner")
+require_relative("../models/member")
 
 class GymClass
 
@@ -149,8 +150,21 @@ class GymClass
     @empty_spaces = @max_spaces - self.members.length
   end
 
-  # def reducedList
-  #   
-  # end
+  def reducedList
+    reduced = []
+
+    for each in Member.find_all()
+      for mem in self.members()
+        if each == mem
+          # do nothing
+        else
+          reduced.push(each)
+        end
+      end
+    end
+
+    return reduced
+
+  end
 
 end

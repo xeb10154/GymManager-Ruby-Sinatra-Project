@@ -68,9 +68,9 @@ member1 = Member.new({
               Member.find_all()
               GymClass.find_all()
 
-              member1.book(spinClass1)
-              member2.book(spinClass1)
-              member1.book(spinClass1)
+              # member1.book(spinClass1)
+              # member2.book(spinClass1)
+              # member1.book(spinClass1)
 
               member1.first_name = "Ray"
               member1.update
@@ -98,6 +98,10 @@ member1 = Member.new({
 
               bool_true = spinClass1.start_time.between?(t1, t2)
               bool_false = pumpClass1.start_time.between?(t1, t2)
+
+              # Testing extra functionality - filtering
+
+              reduced = spinClass1.reducedList
 
               binding.pry
               nil

@@ -1,9 +1,23 @@
 <h2 class="show">Member Details</h2>
 
-<p>First Name: <%= @member.first_name %> </p>
-<p>Last Name: <%= @member.last_name %> </p>
-<p>Membership Type: <%= @member.member_type %> </p>
-<p>Member #ID: <%= @member.id %> </p>
+<table class="tableClasses">
+  <tr>
+    <th class="cell1">First Name:</th>
+    <th class="cell2"><%= @member.first_name%></th>
+  </tr>
+  <tr>
+    <td class="cell1">Last Name:</td>
+    <td class="cell2"><%= @member.last_name  %></td>
+  </tr>
+  <tr>
+    <td class="cell1">Membership Type:</td>
+    <td class="cell2"><%= @member.member_type.capitalize %></td>
+  </tr>
+  <tr>
+    <td class="cell1">Member #ID:</td>
+    <td class="cell2"><%= @member.id %></td>
+  </tr>
+</table>
 
 <form method="post" action ="/member/<%= @member.id %>/delete">
   <input type="submit" value="Delete member"/>
