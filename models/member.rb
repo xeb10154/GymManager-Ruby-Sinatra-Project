@@ -66,30 +66,30 @@ class Member
     return "#{@first_name} #{@last_name}"
   end
 
-  # Still to add condition for member_type (premium or standard membership)
-  def book(aClass)
-    if (aClass.empty_spaces > 0) && (doubleBooked(aClass) == false)
-      booking = Booking.new(
-        "member_id" => @id,
-        "gymclass_id" => aClass.id
-      )
-      booking.save()
-
-      aClass.empty_spaces -= 1
-      aClass.update()
-    end
-  end
-
-  def doubleBooked(aClass)
-    booked = false
-    for each in aClass.members
-      if each.id == @id
-        booked = true
-      end
-      # binding.pry
-    end
-    return booked
-  end
+  # This is now obsolete code - booking initially thought to be a member function.
+  # def book(aClass)
+  #   if (aClass.empty_spaces > 0) && (doubleBooked(aClass) == false)
+  #     booking = Booking.new(
+  #       "member_id" => @id,
+  #       "gymclass_id" => aClass.id
+  #     )
+  #     booking.save()
+  #
+  #     aClass.empty_spaces -= 1
+  #     aClass.update()
+  #   end
+  # end
+  #
+  # def doubleBooked(aClass)
+  #   booked = false
+  #   for each in aClass.members
+  #     if each.id == @id
+  #       booked = true
+  #     end
+  #     # binding.pry
+  #   end
+  #   return booked
+  # end
 
   def gymclasses
     sql = "SELECT gymclasses.*

@@ -15,7 +15,7 @@
   </tr>
   <tr>
     <td class="cell1">Start Time:</td>
-    <td class="cell2"><%= gymclass.start_time %></td>
+    <td class="cell2"><%= gymclass.start_time.to_s.slice(0..18) %></td>
   </tr>
   <tr>
     <td class="cell1">Instructor:</td>

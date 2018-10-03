@@ -35,11 +35,11 @@ end
 post "/member/:id/edit" do
   member = Member.new(params)
   member.update()
-  erb (:"/index") # Cant get REDIRECT to work!!!
+  erb(:"member/edited")
 end
 
 post "/member/:id/delete" do
-  member = Member.find(params[:id])
-  member.delete()
-  erb (:"/index")
+  @member = Member.find(params[:id])
+  @member.delete()
+  erb(:"/member/deleted")
 end

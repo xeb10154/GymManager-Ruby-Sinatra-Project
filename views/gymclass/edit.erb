@@ -2,17 +2,17 @@
 
 <form method="post" action="/gymclass/<%= @gymclass.id %>/edit">
 
-  <label for="instructor_name">First Name:</label>
+  <label for="instructor_name">Instructor:</label>
   <input id="instructor_name" value="<%= @gymclass.instructor_name %>" type="text" name="instructor_name"/>
 
-  <label for="class_name">Last Name:</label>
+  <label for="class_name">Class Name:</label>
   <input id="class_name" value="<%= @gymclass.class_name%>" type="text" name="class_name"/>
 
   <label for="max_spaces">Maximum Class Size:</label>
   <input id="max_spaces" value="<%= @gymclass.max_spaces%>" type="number" name="max_spaces"/>
 <!-- Not fully working yet -->
   <label for="start_time">Start Time:</label>
-  <input id="start_time" value="<%= @gymclass.start_time%>" type="datetime-local" name="start_time">
+  <input id="start_time" value="<%= @gymclass.start_time%>" type="datetime-local" name="start_time" required>
 
   <input class="btn-action" type='submit' value="Save edit">
 </form>

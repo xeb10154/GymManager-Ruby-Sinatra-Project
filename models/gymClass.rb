@@ -67,25 +67,14 @@ class GymClass
   def book(member)
     # check member premium status
     if (@empty_spaces > 0) && member.member_type == "premium" && !doubleBooked(member)
-      booking = Booking.new(
-        "member_id" => member.id,
-        "gymclass_id" => @id
-      )
-      booking.save()
 
-      @empty_spaces -= 1
-      self.update()
+      confirmBooking(member)
 
       # check the time
-    elsif (@empty_spaces > 0) && member.member_type =="standard" && !doubleBooked(member) && peakTime(member) == false
-      booking = Booking.new(
-        "member_id" => member.id,
-        "gymclass_id" => @id
-      )
-      booking.save()
+    elsif (@empty_spaces > 0) && member.member_type == "standard" && !doubleBooked(member) && peakTime(member) == false
 
-      @empty_spaces -= 1
-      self.update()
+      confirmBooking(member)
+
       # binding.pry
     end
   end
@@ -131,6 +120,17 @@ class GymClass
     end
   end
 
+  def confirmBooking(member)
+    booking = Booking.new(
+      "member_id" => member.id,
+      "gymclass_id" => @id
+    )
+    booking.save()
+
+    @empty_spaces -= 1
+    self.update()
+  end
+
   # Only select members.* so that only those variables are mapped
   def members()
     sql = "SELECT members.*
@@ -148,5 +148,9 @@ class GymClass
   def calcSpaces
     @empty_spaces = @max_spaces - self.members.length
   end
+
+  # def reducedList
+  #   
+  # end
 
 end

@@ -28,7 +28,10 @@ end
 
 get "/gymclass/:id/booking" do
   @gymclass = GymClass.find(params[:id])
+
   @members = Member.find_all()
+
+  # @members = @gymclass.reducedList
   erb(:"gymclass/booking")
 end
 
@@ -48,13 +51,13 @@ end
 post "/gymclass/:id/edit" do
   gymclass = GymClass.new(params)
   gymclass.update()
-  erb (:"/index") # Cant get REDIRECT to work!!!
+  erb (:"/gymclass/edited")
 end
 
 post "/gymclass/:id/delete" do
-  gymclass = GymClass.find(params[:id])
-  gymclass.delete()
-  erb (:"/index")
+  @gymclass = GymClass.find(params[:id])
+  @gymclass.delete()
+  erb (:"/gymclass/deleted")
 end
 
 post "/gymclass/:id/booking/:member_id" do

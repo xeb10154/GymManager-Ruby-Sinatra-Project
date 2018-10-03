@@ -9,23 +9,24 @@ header {
 }
 
 body {
-  font-family: Oswald;
+  font-family: "Archivo Black";
 }
 
 header a {
   color: white;
-  text-decoration: none;
+  text-decoration: underline;
   text-transform: none;
-  font-size: 48px;
+  font-size: 42px;
   font-weight: 700;
 
 }
 
 nav a {
+  font-family: Open Sans;
   color: white;
   text-decoration: none;
   text-transform: none;
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 400;
   margin-left: 10px;
 }
@@ -37,11 +38,13 @@ nav ul {
 }
 
 nav li {
+  padding-top: 15px;
   display: inline-block;
   position: relative;
 }
 
 main {
+  font-family: Open Sans;
   position: absolute;
   top: 150px;
   bottom: 100px;
@@ -51,6 +54,7 @@ main {
 }
 
 footer {
+  font-family: Open Sans;
   background-color: #345D82;
   position: absolute;
   bottom: 0px;
@@ -61,7 +65,10 @@ footer {
 }
 
 h1 {
+
   margin-left: 10px;
+  margin-block-start: 0.5em;
+  margin-block-end: 0.2em;
 }
 
 h5 {
@@ -82,17 +89,12 @@ h6 {
   font-weight: 300
 }
 
-.gymclass_list {
-  margin: 10px
-}
-
 .links li{
   margin: 0;
   padding: 0;
   /* font-size: 24px; */
   font-weight: 400;
   display: inline-block;
-  position: left;
 }
 
 .links ul {
@@ -112,7 +114,13 @@ h6 {
 }
 
 .tableClasses {
-    border-spacing: 5px;
+  width: 400px;
+  border-spacing: 5px;
+  margin: 5px;
+}
+
+.cell1 {
+  width: 150px;
 }
 
 th {
@@ -123,6 +131,14 @@ th {
   padding: 5px;
 }
 
+td {
+  background-color: #66AFFF;
+}
+
 p {
   margin-left: 10px;
+}
+
+form {
+  margin: 10px;
 }
