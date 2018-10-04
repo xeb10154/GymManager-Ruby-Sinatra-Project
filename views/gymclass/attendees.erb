@@ -1,9 +1,19 @@
-<h1>Attendees for this <%= @gymclass.class_name %></h1>
+<h2>Attendees for this <%= @gymclass.class_name %></h2>
+
+<p><a href="/gymclass/<%= @gymclass.id %>"> << See class details</a></p>
 
 <div class="attendee_list">
   <% for member in @attendees %>
-  <h3>Name: <%= member.fullName() %></h3>
-  <p>Member #ID: <%= member.id %> </p>
+  <table class="tableClasses">
+    <tr>
+      <th class="cell1">Name:</th>
+      <th class="cell2"><%= member.fullName()%></th>
+    </tr>
+    <tr>
+      <td class="cell1">Member #ID:</td>
+      <td class="cell2"><%= member.id %></td>
+    </tr>
+  </table>
   <form method="post" action="/gymclass/<%= @gymclass.id %>/booking/<%= member.id %>/cancel">
     <input class="btn-action" type='submit' value="Cancel Booking">
   </form>

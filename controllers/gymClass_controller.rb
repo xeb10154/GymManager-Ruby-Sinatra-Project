@@ -65,10 +65,14 @@ post "/gymclass/:id/booking/:member_id" do
   member = Member.find(params[:member_id])
   @gymclass = GymClass.find(params[:id])
 
-  @gymclass.book(member)
+  @result = @gymclass.book(member)
   @attendees = @gymclass.members()
 
-  erb (:"gymclass/attendees")
+  if @result == false
+    erb (:"gymclass/confirm")
+  else
+    erb (:"gymclass/attendees")
+  end
 end
 
 post "/gymclass/:id/booking/:member_id/cancel" do

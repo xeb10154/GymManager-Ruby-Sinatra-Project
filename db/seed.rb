@@ -12,7 +12,7 @@ Booking.delete_all()
 member1 = Member.new({
   "first_name" => "Raymond",
   "last_name" => "Yau",
-  "member_type" => "premium"
+  "member_type" => "standard"
   })
   member1.save()
 
@@ -33,9 +33,44 @@ member1 = Member.new({
       member4 = Member.new({
         "first_name" => "Leah",
         "last_name" => "Meromy",
-        "member_type" => "premium"
+        "member_type" => "standard"
         })
         member4.save()
+
+        member5 = Member.new({
+          "first_name" => "Stephen",
+          "last_name" => "Hart",
+          "member_type" => "premium"
+          })
+          member5.save()
+
+          member6 = Member.new({
+            "first_name" => "Anna",
+            "last_name" => "Henderson",
+            "member_type" => "premium"
+            })
+            member6.save()
+
+            member7 = Member.new({
+              "first_name" => "Louise",
+              "last_name" => "Reid",
+              "member_type" => "premium"
+              })
+              member7.save()
+
+              member8 = Member.new({
+                "first_name" => "David",
+                "last_name" => "Bell",
+                "member_type" => "premium"
+                })
+                member8.save()
+
+                member9 = Member.new({
+                  "first_name" => "Neil",
+                  "last_name" => "Davidson",
+                  "member_type" => "premium"
+                  })
+                  member9.save()
 
         #--- Gym Class Objects
 
@@ -65,43 +100,43 @@ member1 = Member.new({
 
 
 
-              Member.find_all()
-              GymClass.find_all()
-
-              # member1.book(spinClass1)
-              # member2.book(spinClass1)
-              # member1.book(spinClass1)
-
-              member1.first_name = "Ray"
-              member1.update
-
-              # spinClass1.book(member3)
-              # spinClass1.book(member3)
-
-              # spinClass1.cancelBooking(member3)
-
-              pumpClass1.book(member2)
-
-              spinClass1.instructor_name = "bob"
-              spinClass1.update
-
-              spinClass1.book(member4)
-
-              # Testing time conditions
-              t1 = Time.new(2018, 10, 2, 7, 0, 10, 0)
-              t2 = Time.new(2018, 10, 2, 9, 0, 10, 0)
-
-              p1 = t1.strftime("%H%M%S%N")
-              p2 = t2.strftime("%H%M%S%N")
-
-              test1 = p1 < p2
-
-              bool_true = spinClass1.start_time.between?(t1, t2)
-              bool_false = pumpClass1.start_time.between?(t1, t2)
-
-              # Testing extra functionality - filtering
-
-              reduced = spinClass1.reducedList
-
-              binding.pry
-              nil
+              # Member.find_all()
+              # GymClass.find_all()
+              #
+              # # member1.book(spinClass1)
+              # # member2.book(spinClass1)
+              # # member1.book(spinClass1)
+              #
+              # member1.first_name = "Ray"
+              # member1.update
+              #
+              # # spinClass1.book(member3)
+              # # spinClass1.book(member3)
+              #
+              # # spinClass1.cancelBooking(member3)
+              #
+              # pumpClass1.book(member2)
+              #
+              # spinClass1.instructor_name = "bob"
+              # spinClass1.update
+              #
+              # spinClass1.book(member4)
+              #
+              # # Testing time conditions
+              # t1 = Time.new(2018, 10, 2, 7, 0, 10, 0)
+              # t2 = Time.new(2018, 10, 2, 9, 0, 10, 0)
+              #
+              # p1 = t1.strftime("%H%M%S%N")
+              # p2 = t2.strftime("%H%M%S%N")
+              #
+              # test1 = p1 < p2
+              #
+              # bool_true = spinClass1.start_time.between?(t1, t2)
+              # bool_false = pumpClass1.start_time.between?(t1, t2)
+              #
+              # # Testing extra functionality - filtering
+              #
+              # reduced = spinClass1.reducedList
+              #
+              # binding.pry
+              # nil

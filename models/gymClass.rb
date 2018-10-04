@@ -70,13 +70,15 @@ class GymClass
     if (@empty_spaces > 0) && member.member_type == "premium" && !doubleBooked(member)
 
       confirmBooking(member)
-
+      return true
       # check the time
-    elsif (@empty_spaces > 0) && member.member_type == "standard" && !doubleBooked(member) && peakTime(member) == false
+    elsif (@empty_spaces > 0) && member.member_type == "standard" && !doubleBooked(member) && !peakTime(member)
 
       confirmBooking(member)
-
+      return true
       # binding.pry
+    else
+      return false
     end
   end
 
@@ -84,14 +86,14 @@ class GymClass
     peaktime = false
     # Hard coded times
     # Morning peak times
-    t1 = Time.new(2018, 1, 1, 7, 0, 0, 0).strftime("%H%M%S%N")
-    t2 = Time.new(2018, 1, 1, 9, 0, 0, 0).strftime("%H%M%S%N")
+    t1 = Time.new(2018, 1, 1, 7, 0, 0, 0).strftime("%H%M%S")
+    t2 = Time.new(2018, 1, 1, 9, 0, 0, 0).strftime("%H%M%S")
     # Evening peak times
-    t3 = Time.new(2018, 1, 1, 17, 0, 0, 0).strftime("%H%M%S%N")
-    t4 = Time.new(2018, 1, 1, 20, 0, 0, 0).strftime("%H%M%S%N")
+    t3 = Time.new(2018, 1, 1, 17, 0, 0, 0).strftime("%H%M%S")
+    t4 = Time.new(2018, 1, 1, 20, 0, 0, 0).strftime("%H%M%S")
 
-    current_time = self.start_time.strftime("%H%M%S%N")
-
+    current_time = self.start_time.strftime("%H%M%S")
+    # binding.pry
     if current_time.between?(t1,t2) || current_time.between?(t3,t4)
       peaktime = true
     end
@@ -146,24 +148,36 @@ class GymClass
     return result
   end
 
-  def calcSpaces
+  def calcSpaces()
     @empty_spaces = @max_spaces - self.members.length
   end
 
-  def reducedList
-    reduced = []
+  def reducedList()
 
-    for each in Member.find_all()
-      for mem in self.members()
-        if each == mem
-          # do nothing
-        else
-          reduced.push(each)
-        end
-      end
-    end
+    sql = "SELECT members.* FROM members
+    INNER JOIN bookings
+    ON members.id = bookings.member_id
+    WHERE gymclass_id != $1"
 
-    return reduced
+    values = [@id]
+    reduced_hash = SqlRunner.run(sql, values)
+    binding.pry
+    return reduced_hash.map{|member| Member.new(member)}
+
+    # #=====================
+    # reduced = []
+    #
+    # for each in Member.find_all()
+    #   for mem in self.members()
+    #     if each == mem
+    #       # do nothing
+    #     else
+    #       reduced.push(each)
+    #     end
+    #   end
+    # end
+    #
+    # return reduced
 
   end
 
