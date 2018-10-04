@@ -164,7 +164,8 @@ class GymClass
     binding.pry
     return reduced_hash.map{|member| Member.new(member)}
 
-    # #=====================
+    # #=========================
+
     # reduced = []
     #
     # for each in Member.find_all()

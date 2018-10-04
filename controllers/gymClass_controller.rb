@@ -69,7 +69,7 @@ post "/gymclass/:id/booking/:member_id" do
   @attendees = @gymclass.members()
 
   if @result == false
-    erb (:"gymclass/confirm")
+    erb (:"gymclass/error")
   else
     erb (:"gymclass/attendees")
   end
